@@ -1,5 +1,5 @@
 import XCTest
-@testable import Gorge
+@testable import PLCommand
 
 final class BasherTests: XCTestCase {
     func testExample() throws {

@@ -2,27 +2,28 @@
 import PackageDescription
 
 let package = Package(
-    name: "Gorge",
+    name: "PLCommand",
+    platforms: [.macOS(.v10_15)],
     products: [
         .library(
-            name: "Gorge",
-            targets: ["Gorge"]),
+            name: "PLCommand",
+            targets: ["PLCommand"]),
     ],
     dependencies: [],
     targets: [
         .target(
-            name: "Gorge",
+            name: "PLCommand",
             dependencies: []
         ),
         .executableTarget(
-            name: "GorgeExample",
+            name: "PLCommandExample",
             dependencies: [
-                .target(name: "Gorge")
+                .target(name: "PLCommand")
             ]
         ),
         .testTarget(
-            name: "GorgeTests",
-            dependencies: ["Gorge"]
+            name: "PLCommandTests",
+            dependencies: ["PLCommand"]
         ),
     ]
 )

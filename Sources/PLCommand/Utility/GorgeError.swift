@@ -1,3 +1,3 @@
-enum BasherError: Error {
+enum GorgeError: Error {
     case commandNotFound(message: String)
 }
