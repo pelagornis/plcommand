@@ -1,7 +1,7 @@
 import Foundation
 
 protocol CommandExecute {
-    func run(
+    static func run(
         command: String,
         argument: [String],
         path: String,

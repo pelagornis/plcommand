@@ -7,7 +7,7 @@ public struct PLCommand {
 
 /// Supporting Bash
 extension PLCommand.Bash: CommandExecute {
-    func run(
+    static func run(
         command: String,
         argument: [String] = [],
         path: String = ".",
@@ -15,14 +15,13 @@ extension PLCommand.Bash: CommandExecute {
         outputHandler: FileHandle? = nil,
         errorHandler: FileHandle? = nil
     ) throws -> String {
-//        let command = "cd \(path.replacingCharacters(in: " ", with: "\\"))"
-        return try process.launchShell()
+        return try ""
     }
 }
 
 /// Supporting Zsh
 extension PLCommand.Zsh: CommandExecute {
-    func run(
+    static func run(
         command: String,
         argument: [String] = [],
         path: String = ".",
@@ -30,6 +29,6 @@ extension PLCommand.Zsh: CommandExecute {
         outputHandler: FileHandle? = nil,
         errorHandler: FileHandle? = nil
     ) throws -> String {
-        return try process.launchShell()
+        return try ""
     }
 }
