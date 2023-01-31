@@ -15,7 +15,7 @@ extension PLCommand.Bash: CommandExecute {
         outputHandler: FileHandle? = nil,
         errorHandler: FileHandle? = nil
     ) throws -> String {
-        return try ""
+        return  ""
     }
 }
 
@@ -29,6 +29,6 @@ extension PLCommand.Zsh: CommandExecute {
         outputHandler: FileHandle? = nil,
         errorHandler: FileHandle? = nil
     ) throws -> String {
-        return try ""
+        return ""
     }
 }

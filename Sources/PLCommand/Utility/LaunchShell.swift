@@ -7,14 +7,27 @@ extension Process {
         environment: [String: String],
         path: String
     ) throws -> String {
+        createPath(
+            executableURL: executableURL,
+            arguments: arguments,
+            environment: environment
+        )
         
-        return try ""
+        let outputPipe = Pipe()
+        let errorPipe = Pipe()
+        
+        standardOutput = outputPipe
+        standardError = errorPipe
+        
+        
+        return ""
     }
 }
 
 private extension Process {
     func createPath(
         executableURL: String,
+        arguments: [String],
         environment: [String: String]?
     ) {
         if #available(macOS 10.13, *) {
@@ -25,24 +38,31 @@ private extension Process {
         if let environment = environment {
             self.environment = environment
         }
-        
+        self.arguments = arguments
     }
     
-    func fileHandle(data: Data, fileHandle: FileHandle) throws -> String {
+    func fileHandleData(data: Data, fileHandle: FileHandle) throws -> String? {
         var data: Data?
         if #available(macOS 10.15.4, *) {
             data = try fileHandle.readToEnd()
         } else {
             data = fileHandle.readDataToEndOfFile()
         }
-        
-        return try ""
+        if let outputData = data {
+            return String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+        return nil
     }
     
+    func fileHandleDataReading(pipe: Pipe, data: Data, fileHandler: FileHandle) {
+        pipe.fileHandleForReading.readabilityHandler = { handler in
+            
+        }
+    }
     
     func run() throws {
         if #available(macOS 10.13, *) {
-            try self.run()
+            try? self.run()
         } else {
             self.launch()
         }
