@@ -3,9 +3,8 @@ import Foundation
 extension Process {
     func launchShell(
         executableURL: String,
-        arguments: [String],
-        environment: [String: String],
-        path: String
+        arguments: [String] = [],
+        environment: [String: String]? = nil
     ) throws -> String {
         createPath(
             executableURL: executableURL,
@@ -19,12 +18,24 @@ extension Process {
         standardOutput = outputPipe
         standardError = errorPipe
         
+        try running()
+
+        let outputActual = try fileHandleData(fileHandle: outputPipe.fileHandleForReading)
+        let errorActual = try fileHandleData(fileHandle: errorPipe.fileHandleForReading)
         
-        return ""
+        if terminationStatus != 0 {
+            throw PLCommandError(
+                terminationStatus: terminationStatus,
+                error: errorActual ?? "",
+                output: outputActual ?? ""
+            )
+        }
+        return outputActual ?? ""
     }
 }
 
 private extension Process {
+
     func createPath(
         executableURL: String,
         arguments: [String],
@@ -40,29 +51,20 @@ private extension Process {
         }
         self.arguments = arguments
     }
-    
-    func fileHandleData(data: Data, fileHandle: FileHandle) throws -> String? {
+
+    func fileHandleData(fileHandle: FileHandle) throws -> String? {
         var data: Data?
         if #available(macOS 10.15.4, *) {
             data = try fileHandle.readToEnd()
         } else {
             data = fileHandle.readDataToEndOfFile()
         }
-        if let outputData = data {
-            return String(data: outputData, encoding: .utf8)?.trimmingCharacters(in: .whitespacesAndNewlines)
-        }
-        return nil
+        return data?.output
     }
-    
-    func fileHandleDataReading(pipe: Pipe, data: Data, fileHandler: FileHandle) {
-        pipe.fileHandleForReading.readabilityHandler = { handler in
-            
-        }
-    }
-    
-    func run() throws {
+
+    func running() throws {
         if #available(macOS 10.13, *) {
-            try? self.run()
+            try self.run()
         } else {
             self.launch()
         }

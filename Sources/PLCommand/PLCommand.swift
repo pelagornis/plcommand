@@ -7,28 +7,32 @@ public struct PLCommand {
 
 /// Supporting Bash
 extension PLCommand.Bash: CommandExecute {
-    static func run(
-        command: String,
-        argument: [String] = [],
-        path: String = ".",
-        process: Process = .init(),
-        outputHandler: FileHandle? = nil,
-        errorHandler: FileHandle? = nil
-    ) throws -> String {
-        return  ""
+    @discardableResult
+    public static func run(
+        argument: [String],
+        environment: [String : String] = [:],
+        process: Process = .init()
+    ) throws -> String {        
+        return try process.launchShell(
+            executableURL: "/bin/bash",
+            arguments: argument,
+            environment: environment
+        )
     }
 }
 
 /// Supporting Zsh
 extension PLCommand.Zsh: CommandExecute {
-    static func run(
-        command: String,
-        argument: [String] = [],
-        path: String = ".",
-        process: Process = .init(),
-        outputHandler: FileHandle? = nil,
-        errorHandler: FileHandle? = nil
+    @discardableResult
+    public static func run(
+        argument: [String],
+        environment: [String : String] = [:],
+        process: Process = .init()
     ) throws -> String {
-        return ""
+        return try process.launchShell(
+            executableURL: "/bin/zsh",
+            arguments: argument,
+            environment: environment
+        )
     }
 }
