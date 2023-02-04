@@ -2,7 +2,7 @@ import PLCommand
 import Foundation
 
 do {
-    try MockBashDemo.mkdir()
+    try MockBashDemo.run()
 } catch let error {
     print(error)
     exit(1)
