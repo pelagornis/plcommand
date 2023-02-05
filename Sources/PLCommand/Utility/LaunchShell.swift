@@ -4,13 +4,11 @@ extension Process {
     func launchShell(
         executableURL: String,
         arguments: [String] = [],
-        currentDirectoryPath: String,
         environment: [String: String]? = nil
     ) throws -> String {
         createPath(
             executableURL: executableURL,
             arguments: arguments,
-            currentDirectoryURL: currentDirectoryPath,
             environment: environment
         )
         
@@ -41,15 +39,12 @@ private extension Process {
     func createPath(
         executableURL: String,
         arguments: [String],
-        currentDirectoryURL: String,
         environment: [String: String]?
     ) {
         if #available(macOS 10.13, *) {
             self.executableURL = URL(path: executableURL)
-            self.currentDirectoryURL = URL(path: currentDirectoryURL)
         } else {
             launchPath = executableURL
-            currentDirectoryPath = currentDirectoryURL
         }
         if let environment = environment {
             self.environment = environment
