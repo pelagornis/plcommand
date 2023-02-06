@@ -2,8 +2,11 @@ import Foundation
 import PLCommand
 
 final class MockBashDemo {
-    static func run() throws  {
-        PLCommand.Task.run("")
+    let bash = PLCommand.Bash
+    
+    func run() throws {
+        print(bash.run("pwd").output == FileManager.default.currentDirectoryPath)
+        bash.run("pwd")
     }
 }
 

@@ -6,7 +6,7 @@ public extension PLCommand {
 
 public extension PLCommand.Task {
     @discardableResult
-    static func run(_ request: PLCommand.Request) throws -> String {
+    static func run(_ request: PLCommand.Request) -> PLCommand.Result {
         let process = prepare(request)
         
         let outputPipe = Pipe()
@@ -21,20 +21,16 @@ public extension PLCommand.Task {
             let outputActual = try fileHandleData(fileHandle: outputPipe.fileHandleForReading) ?? ""
             let errorActual = try fileHandleData(fileHandle: errorPipe.fileHandleForReading) ?? ""
             
-            if process.terminationStatus != 0 {
-                throw PLCommandError(
-                    terminationStatus: process.terminationStatus,
-                    error: errorActual,
-                    output: outputActual
-                )
+            if process.terminationStatus == EXIT_SUCCESS {
+                let res = PLCommand.Response(statusCode: process.terminationStatus, output: outputActual, error: errorActual)
+                return PLCommand.Result.success(request, res)
+            } else {
+                let res = PLCommand.Response(statusCode: process.terminationStatus, output: errorActual, error: errorActual)
+                return PLCommand.Result.failure(request, res)
             }
-            return outputActual
-        } catch {
-            throw PLCommandError(
-                terminationStatus: EXIT_FAILURE,
-                error: error.localizedDescription,
-                output: ""
-            )
+        } catch let error {
+            let res = PLCommand.Response(statusCode: EXIT_FAILURE, output: "", error: error.localizedDescription)
+            return PLCommand.Result.failure(request, res)
         }
     }
 }
