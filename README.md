@@ -32,3 +32,19 @@ Or if you want to use zsh.
 let zsh = PLCommand.ZSH
 zsh.run("{command}")
 ```
+
+### Extension
+PLCommand is easier to scale.
+
+```swift
+extension PLCommand {
+    static let Swift = PLCommand.Alias(executableURL: "/usr/bin/swift")
+}
+
+PLCommand.Swift.run("{command}")
+```
+
+
+## License
+**PLCommand** is under MIT license. See the [LICENSE](LICENSE) file for more info.
+
