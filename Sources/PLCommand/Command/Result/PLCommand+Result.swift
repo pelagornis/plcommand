@@ -38,3 +38,13 @@ public extension PLCommand.Result {
       return response.error
     }
 }
+
+extension PLCommand.Request: Equatable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+      lhs.environment == rhs.environment
+        && lhs.executableURL == rhs.executableURL
+        && lhs.dashc == rhs.dashc
+        && lhs.arguments == rhs.arguments
+        && lhs.audited == rhs.audited
+    }
+}

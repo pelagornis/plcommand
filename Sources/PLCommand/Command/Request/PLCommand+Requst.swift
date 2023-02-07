@@ -31,23 +31,3 @@ extension PLCommand {
         }
     }
 }
-
-//extension PLCommand.Request: ExpressibleByStringLiteral {
-//    public init(stringLiteral value: StringLiteralType) {
-//        self.init(value)
-//    }
-//
-//    public init(extendedGraphemeClusterLiteral value: String) {
-//        self.init(value)
-//    }
-//
-//    public init(unicodeScalarLiteral value: String) {
-//        self.init(value)
-//    }
-//}
-
-extension PLCommand.Result {
-//    func getExecutableURL() -> String {
-//        
-//    }
-}
