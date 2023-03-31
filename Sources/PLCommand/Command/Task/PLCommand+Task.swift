@@ -5,6 +5,7 @@ public extension PLCommand {
 }
 
 public extension PLCommand.Task {
+    /// running command
     @discardableResult
     static func run(_ request: PLCommand.Request) -> PLCommand.Result {
         let process = prepare(request)

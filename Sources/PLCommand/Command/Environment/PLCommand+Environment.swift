@@ -1,19 +1,37 @@
 import Foundation
 
 extension PLCommand {
+    /// An environment for a command to run in.
     public struct Environment {
-        //MARK: - Property
+        //MARK: - Properties
+
+        /// The environment variables for the command.
         public private(set) var data: [String : String] = [:]
+
+        /// The global environment for all commands.
         public static var global = PLCommand.Environment()
 
-        //MARK: - Initalizer
-        public init(
-            _ data: [String : String] = ProcessInfo.processInfo.environment
-        ) {
+        //MARK: - Initializer
+
+        /**
+         Creates a new environment.
+
+         - Parameter data: The environment variables for the command. Defaults to the current process's environment.
+         */
+        public init(_ data: [String : String] = ProcessInfo.processInfo.environment) {
             self.data = data
         }
-        
-        subscript(_ key: String) -> String? {
+
+        //MARK: - Subscript
+
+        /**
+         Accesses an environment variable by name.
+
+         - Parameter key: The name of the environment variable.
+
+         - Returns: The value of the environment variable, or `nil` if it is not set.
+         */
+        public subscript(_ key: String) -> String? {
             get {
                 return data[key]
             }
@@ -21,7 +39,14 @@ extension PLCommand {
                 data[key] = newValue
             }
         }
-        
+
+        //MARK: - Methods
+
+        /**
+         Adds a directory to the PATH environment variable.
+
+         - Parameter path: The directory to add.
+         */
         mutating func add(_ path: String) {
             data["PATH"] = data["PATH"] == nil ? path : "\(path):\(data["PATH"]!)"
         }
