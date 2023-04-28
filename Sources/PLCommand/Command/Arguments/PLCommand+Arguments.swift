@@ -32,6 +32,7 @@ extension PLCommand.Arguments: Equatable {
 }
 
 extension PLCommand.Arguments: ExpressibleByStringLiteral {
+    
   public init(stringLiteral value: StringLiteralType) {
     self.init(value)
   }
