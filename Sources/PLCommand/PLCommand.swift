@@ -1,4 +1,4 @@
 import Foundation
 
-/// A command that can be executed by the Playground LiveView service.
+/// PLCommand that can be executed.
 public struct PLCommand {}
