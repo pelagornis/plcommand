@@ -1,6 +1,7 @@
 import Foundation
 
 extension PLCommand {
+    /// The request from a command.
     public struct Request {
 
         /// The environment to use for the command.

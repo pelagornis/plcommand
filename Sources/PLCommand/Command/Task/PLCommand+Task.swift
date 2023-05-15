@@ -1,11 +1,12 @@
 import Foundation
 
 public extension PLCommand {
+    /// The Task is Operation to execute PLCommand.
     enum Task {}
 }
 
 public extension PLCommand.Task {
-    /// running command
+    /// running command.
     @discardableResult
     static func run(_ request: PLCommand.Request) -> PLCommand.Result {
         let process = prepare(request)
@@ -37,6 +38,7 @@ public extension PLCommand.Task {
 }
 
 public extension PLCommand.Task {
+    /// Set the required parts before running the process
     static func prepare(_ request: PLCommand.Request) -> Process {
         let process = Process()
         if #available(macOS 10.13, *) {
@@ -54,7 +56,7 @@ public extension PLCommand.Task {
         }
         return process
     }
-    
+    /// FileHandle preprocessing
     static func fileHandleData(fileHandle: FileHandle) throws -> String? {
         var data: Data?
         if #available(macOS 10.15.4, *) {
@@ -64,7 +66,8 @@ public extension PLCommand.Task {
         }
         return data?.output
     }
-    
+
+    /// Process preprocessing
     static func run(process: Process) throws {
         if #available(macOS 10.13, *) {
             try process.run()
