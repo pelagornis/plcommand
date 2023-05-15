@@ -9,6 +9,9 @@ let package = Package(
             name: "PLCommand",
             targets: ["PLCommand"]),
     ],
+    dependencies: [
+        .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.2.0")
+    ],
     targets: [
         .target(
             name: "PLCommand",
