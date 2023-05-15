@@ -1,6 +1,8 @@
 # PLCommand
-
-![Swift](https://img.shields.io/badge/Swift-5.8-orange.svg)
+![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)
+![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)
+[![License](https://img.shields.io/github/license/pelagornis/PLCommand)](https://github.com/pelagornis/PLCommand/blob/main/LICENSE)
+![Platform](https://img.shields.io/badge/platforms-macOS%2010.5-red)
 
 ﹥: Running Command from Swift
 
