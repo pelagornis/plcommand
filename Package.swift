@@ -9,7 +9,6 @@ let package = Package(
             name: "PLCommand",
             targets: ["PLCommand"]),
     ],
-    dependencies: [],
     targets: [
         .target(
             name: "PLCommand",
