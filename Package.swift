@@ -15,12 +15,6 @@ let package = Package(
             name: "PLCommand",
             dependencies: []
         ),
-        .executableTarget(
-            name: "PLCommandExample",
-            dependencies: [
-                .target(name: "PLCommand")
-            ]
-        ),
         .testTarget(
             name: "PLCommandTests",
             dependencies: ["PLCommand"]
