@@ -1,4 +1,4 @@
-name: Docc
+name: Docc Generate
 
 on:
   release:
