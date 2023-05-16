@@ -10,6 +10,3 @@ This library provides the ability to run commands within Swift code.
 
 ### Essentials
 - <doc:GettingStarted>
-
-
-- <!--@START_MENU_TOKEN@-->``Symbol``<!--@END_MENU_TOKEN@-->
