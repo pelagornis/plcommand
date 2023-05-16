@@ -22,6 +22,10 @@ Then import the PLCommand from thr location you want to use.
 ```swift
 import PLCommand
 ```
+## Documentation
+The documentation for releases and ``main`` are available here:
+- [``main``](https://pelagornis.github.io/PLCommand/main/documentation/plcommand)
+
 
 ## Using
 If you want to use Bash.
