@@ -39,6 +39,33 @@ let zsh = PLCommand.ZSH
 zsh.run("{command}")
 ```
 
+## Frequently Used Commands
+PLCommand supports frequently used features.
+
+### Git
+```swift
+PLCommand.Git.`init`()
+PLCommand.Git.add()
+PLCommand.Git.clone(repositoryURL)
+PLCommand.Git.commit("comment")
+PLCommand.Git.push()
+PLCommand.Git.pull(remote: "origin")
+PLCommand.Git.checkout(branch: "gh-page")
+```
+
+### Swift Package Manager
+```swift
+PLCommand.SwiftPackage.create()
+PLCommand.SwiftPackage.create(type: .executable)
+PLCommand.SwiftPackage.update()
+PLCommand.SwiftPackage.generateXcodeproj()
+PLCommand.SwiftPackage.build()
+PLCommand.SwiftPackage.test()
+```
+
+> PLCommand will provide more functionality in the future.
+
+
 ### Extension
 PLCommand is easier to scale.
 
