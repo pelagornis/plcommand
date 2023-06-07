@@ -21,17 +21,20 @@ public extension PLCommand.SwiftPackage {
     /// Create a Swift package
     ///
     /// - Parameter type: Swift Package Type for options
+    @discardableResult
     static func create(type: SwiftPackageType = .library) -> PLCommand.Result {
         let command: PLCommand.Arguments = "swift package init --type \(type.rawValue)"
         return PLCommand.Bash.run(command)
     }
 
     /// Update package dependencies
+    @discardableResult
     static func update() -> PLCommand.Result {
         PLCommand.Bash.run("swift package update")
     }
 
     /// Generate Xcode Project for a Swift Package
+    @discardableResult
     static func generateXcodeproj() -> PLCommand.Result {
         PLCommand.Bash.run("swift package generate-xcodeproj")
     }
@@ -39,6 +42,7 @@ public extension PLCommand.SwiftPackage {
     /// Build a Swift Package
     ///
     /// - Parameter configuration: swift build configuration options
+    @discardableResult
     static func build(configuration: SwiftBuildConfiguration = .debug) -> PLCommand.Result {
         return PLCommand.Bash.run("swift build -c \(configuration.rawValue)")
     }
@@ -46,6 +50,7 @@ public extension PLCommand.SwiftPackage {
     /// Test a Swift Package
     ///
     /// - Parameter configuration: swift test configuration options
+    @discardableResult
     static func test(configuration: SwiftBuildConfiguration = .debug) -> PLCommand.Result {
         return PLCommand.Bash.run("swift test -c \(configuration.rawValue)")
     }
