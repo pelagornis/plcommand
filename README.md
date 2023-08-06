@@ -12,7 +12,7 @@ PLCommand was deployed as Swift Package Manager. Package to install in a project
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/Pelagornis/PLCommand.git", from: "1.0.1")
+        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.1")
     ],
     ...
 )
@@ -24,19 +24,19 @@ import PLCommand
 ```
 ## Documentation
 The documentation for releases and ``main`` are available here:
-- [``main``](https://pelagornis.github.io/PLCommand/main/documentation/plcommand)
+- [``main``](https://pelagornis.github.io/plcommand/main/documentation/plcommand)
 
 
 ## Using
 If you want to use Bash.
 ```swift
 let bash = PLCommand.Bash
-bash.run("{command}")
+bash.run("command")
 ```
 Or if you want to use zsh.
 ```swift
 let zsh = PLCommand.ZSH
-zsh.run("{command}")
+zsh.run("command")
 ```
 
 ## Frequently Used Commands
@@ -79,5 +79,4 @@ PLCommand.Swift.run("{command}")
 
 
 ## License
-**PLCommand** is under MIT license. See the [LICENSE](LICENSE) file for more info.
-
+**plcommand** is under MIT license. See the [LICENSE](LICENSE) file for more info.
