@@ -1,5 +1,6 @@
 import Foundation
 
+/// Quickly execute frequently used Swift Package commands from within Swift code.
 public struct SwiftPackage {
     /// Enum defining available package types when using the Swift Package Manager
     public enum SwiftPackageType: String {
