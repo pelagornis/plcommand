@@ -10,3 +10,8 @@ This library provides the ability to run commands within Swift code.
 
 ### Essentials
 - <doc:GettingStarted>
+
+### Supports
+
+- ``Git``
+- ``SwiftPackage``
