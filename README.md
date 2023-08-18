@@ -12,7 +12,7 @@ PLCommand was deployed as Swift Package Manager. Package to install in a project
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.2")
+        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.1")
     ],
     ...
 )
