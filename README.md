@@ -12,7 +12,7 @@ PLCommand was deployed as Swift Package Manager. Package to install in a project
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.0")
+        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.2")
     ],
     ...
 )
@@ -44,23 +44,23 @@ PLCommand supports frequently used features.
 
 ### Git
 ```swift
-PLCommand.Git.`init`()
-PLCommand.Git.add()
-PLCommand.Git.clone(repositoryURL)
-PLCommand.Git.commit("comment")
-PLCommand.Git.push()
-PLCommand.Git.pull(remote: "origin")
-PLCommand.Git.checkout(branch: "gh-page")
+Git.`init`()
+Git.add()
+Git.clone(repositoryURL)
+Git.commit("comment")
+Git.push()
+Git.pull(remote: "origin")
+Git.checkout(branch: "gh-page")
 ```
 
 ### Swift Package Manager
 ```swift
-PLCommand.SwiftPackage.create()
-PLCommand.SwiftPackage.create(type: .executable)
-PLCommand.SwiftPackage.update()
-PLCommand.SwiftPackage.generateXcodeproj()
-PLCommand.SwiftPackage.build()
-PLCommand.SwiftPackage.test()
+SwiftPackage.create()
+SwiftPackage.create(type: .executable)
+SwiftPackage.update()
+SwiftPackage.generateXcodeproj()
+SwiftPackage.build()
+SwiftPackage.test()
 ```
 
 > PLCommand will provide more functionality in the future.
