@@ -1,5 +1,6 @@
 import Foundation
 
+/// Quickly execute frequently used Git commands from within Swift code.
 public struct Git {
     /// Initialize a git repository
     @discardableResult
