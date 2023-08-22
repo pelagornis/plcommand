@@ -1,4 +1,5 @@
 # PLCommand
+![Official](https://img.shields.io/badge/project-official-green.svg?colorA=303033&colorB=226af6&label=Pelagornis)
 ![SPM](https://img.shields.io/badge/SPM-compatible-brightgreen.svg)
 ![Swift](https://img.shields.io/badge/Swift-5.7-orange.svg)
 [![License](https://img.shields.io/github/license/pelagornis/PLCommand)](https://github.com/pelagornis/PLCommand/blob/main/LICENSE)
