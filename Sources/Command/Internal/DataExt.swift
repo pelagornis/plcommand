@@ -1,7 +1,6 @@
 import Foundation
 
 extension Data {
-
   /// A string representation of the data, trimmed of leading/trailing whitespace and newlines.
   var output: String {
     guard let output = String(
@@ -11,4 +10,3 @@ extension Data {
     return output
   }
 }
-
