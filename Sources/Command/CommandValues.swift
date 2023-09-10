@@ -1,8 +1,7 @@
-//
-//  File.swift
-//  
-//
-//  Created by Jihoonahn on 2023/09/11.
-//
-
 import Foundation
+
+public struct CommandValues: Sendable {
+    @TaskLocal public static var current = Self()
+    //MARK: - Initializer
+    public init() {}
+}
