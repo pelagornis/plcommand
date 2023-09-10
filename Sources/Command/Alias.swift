@@ -1,5 +1,6 @@
 import Foundation
 
+/// An alias for a command that can be run with `PLCommand`.
 public struct Alias {
     /// The URL of the executable to run.
     public let executableURL: String

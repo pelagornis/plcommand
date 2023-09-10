@@ -1,5 +1,6 @@
 import Foundation
 
+/// The Task is Operation to execute PLCommand.
 public enum Task {
     /// running command.
     @discardableResult
