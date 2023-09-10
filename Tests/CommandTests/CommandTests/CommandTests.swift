@@ -1,10 +1,9 @@
 import XCTest
-@testable import PLCommand
+@testable import Command
 
-final class PLCommandTests: XCTestCase {
+final class CommandTests: XCTestCase {
     func testBash() throws {
-        let bash = PLCommand.Bash
-        
+        @Command(\.bash) var bash
         let echo = bash.run("echo Hello world")
         XCTAssertEqual(echo.output, "Hello world")
         
@@ -13,10 +12,10 @@ final class PLCommandTests: XCTestCase {
     }
     
     func testZsh() throws {
-        let zsh = PLCommand.ZSH
+        @Command(\.zsh) var zsh
         
         let pwd = zsh.run("pwd").output
         let path = FileManager.default.currentDirectoryPath
-        XCTAssertEqual(pwd, path)
+        XCTAssertEqual("/private" + pwd, path)
     }
 }
