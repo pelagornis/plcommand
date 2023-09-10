@@ -25,7 +25,7 @@ import Command
 ```
 ## Documentation
 The documentation for releases and ``main`` are available here:
-- [``main``](https://pelagornis.github.io/plcommand/main/documentation/plcommand)
+- [``main``](https://pelagornis.github.io/plcommand/main/documentation/command)
 
 
 ## Using
