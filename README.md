@@ -13,7 +13,7 @@ PLCommand was deployed as Swift Package Manager. Package to install in a project
 let package = Package(
     ...
     dependencies: [
-        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.1.1")
+        .package(url: "https://github.com/pelagornis/plcommand.git", from: "1.2.0")
     ],
     ...
 )
@@ -21,7 +21,7 @@ let package = Package(
 Then import the PLCommand from thr location you want to use.
 
 ```swift
-import PLCommand
+import Command
 ```
 ## Documentation
 The documentation for releases and ``main`` are available here:
@@ -31,53 +31,30 @@ The documentation for releases and ``main`` are available here:
 ## Using
 If you want to use Bash.
 ```swift
-let bash = PLCommand.Bash
-bash.run("command")
+@Command(\.bash) var bashCommand
+bashCommand.run("command")
 ```
 Or if you want to use zsh.
 ```swift
-let zsh = PLCommand.ZSH
-zsh.run("command")
+@Command(\.zsh) var zshCommand
+zshCommand.run("command")
 ```
-
-## Frequently Used Commands
-PLCommand supports frequently used features.
-
-### Git
-```swift
-Git.`init`()
-Git.add()
-Git.clone(repositoryURL)
-Git.commit("comment")
-Git.push()
-Git.pull(remote: "origin")
-Git.checkout(branch: "gh-page")
-```
-
-### Swift Package Manager
-```swift
-SwiftPackage.create()
-SwiftPackage.create(type: .executable)
-SwiftPackage.update()
-SwiftPackage.generateXcodeproj()
-SwiftPackage.build()
-SwiftPackage.test()
-```
-
-> PLCommand will provide more functionality in the future.
 
 
 ### Extension
 PLCommand is easier to scale.
 
 ```swift
-extension PLCommand {
-    static let Swift = PLCommand.Alias(executableURL: "/usr/bin/swift")
+extension CommandValues {
+    var swift: Alias {
+        Alias(executableURL: "/usr/bin/swift")
+    }
 }
 
-PLCommand.Swift.run("{command}")
-```
 
+// Usage
+@Command(\.swift) var swiftCommand
+```
 
 ## License
 **plcommand** is under MIT license. See the [LICENSE](LICENSE) file for more info.
