@@ -41,6 +41,35 @@ zshCommand.run("command")
 ```
 
 
+## Frequently Used Commands
+PLCommand supports frequently used features.
+
+Support ``Git`` Command
+```swift
+@Command(\.git) var git
+
+git.`init`()
+git.add()
+git.clone(repositoryURL)
+git.commit("comment")
+git.push()
+git.pull(remote: "origin")
+git.checkout(branch: "gh-page")
+```
+
+Support ``Swift Package`` Command
+
+```swift
+@Command(\.package) var swiftPackage
+
+swiftPackage.create()
+swiftPackage.create(type: .executable)
+swiftPackage.update()
+swiftPackage.generateXcodeproj()
+swiftPackage.build()
+swiftPackage.test()
+```
+
 ### Extension
 PLCommand is easier to scale.
 
