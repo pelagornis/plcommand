@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/github/license/pelagornis/PLCommand)](https://github.com/pelagornis/PLCommand/blob/main/LICENSE)
 ![Platform](https://img.shields.io/badge/platforms-macOS%2010.5-red)
 
-﹥: Running Command from Swift
+⌘ Running Command from Swift
 
 ## Installation
 PLCommand was deployed as Swift Package Manager. Package to install in a project. Add as a dependent item within the swift manifest.
@@ -23,6 +23,7 @@ Then import the PLCommand from thr location you want to use.
 ```swift
 import Command
 ```
+
 ## Documentation
 The documentation for releases and ``main`` are available here:
 - [``main``](https://pelagornis.github.io/plcommand/main/documentation/command)
@@ -30,11 +31,13 @@ The documentation for releases and ``main`` are available here:
 
 ## Using
 If you want to use Bash.
+
 ```swift
 @Command(\.bash) var bashCommand
 bashCommand.run("command")
 ```
 Or if you want to use zsh.
+
 ```swift
 @Command(\.zsh) var zshCommand
 zshCommand.run("command")
@@ -58,7 +61,6 @@ git.checkout(branch: "gh-page")
 ```
 
 Support ``Swift Package`` Command
-
 ```swift
 @Command(\.package) var swiftPackage
 
