@@ -1,5 +1,6 @@
 import Foundation
 
+/// Support Git Command
 public struct Git {
     @Command(\.bash) var bash
 

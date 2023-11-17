@@ -1,5 +1,6 @@
 import Foundation
 
+/// Support Swift Package Command
 public struct SwiftPackage {
     @Command(\.bash) private var bash
 
