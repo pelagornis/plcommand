@@ -32,7 +32,11 @@ Or if you want to use zsh.
 @Command(\.zsh) var zshCommand
 zshCommand.run("command")
 ```
-
+Or if you want to use Makefile command.
+```swift
+@Command(\.make) var makeCommand
+makeCommand.run("command")
+```
 
 ### Extension
 PLCommand is easier to scale.

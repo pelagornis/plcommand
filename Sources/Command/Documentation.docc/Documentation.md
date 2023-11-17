@@ -15,3 +15,4 @@ This library provides the ability to run commands within Swift code.
 
 - ``Git``
 - ``SwiftPackage``
+- ``Fastlane``
