@@ -20,7 +20,7 @@ import Command
 ```
 
 ## Using PLCommand
-PLCommand offers the most commonly used `bash` and `zsh`, which in addition helps users scale easily.
+PLCommand offers the most commonly used `bash` and `zsh` and `make`, which in addition helps users scale easily.
 
 If you want to use Bash.
 ```swift
