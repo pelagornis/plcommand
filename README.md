@@ -43,11 +43,17 @@ Or if you want to use zsh.
 zshCommand.run("command")
 ```
 
+Or if you want to use Makefile command.
+
+```swift
+@Command(\.make) var makeCommand
+makeCommand.run("command")
+```
 
 ## Frequently Used Commands
 PLCommand supports frequently used features.
 
-Support ``Git`` Command
+Support `Git` Command
 ```swift
 @Command(\.git) var git
 
@@ -60,7 +66,7 @@ git.pull(remote: "origin")
 git.checkout(branch: "gh-page")
 ```
 
-Support ``Swift Package`` Command
+Support `Swift Package` Command
 ```swift
 @Command(\.package) var swiftPackage
 
@@ -70,6 +76,18 @@ swiftPackage.update()
 swiftPackage.generateXcodeproj()
 swiftPackage.build()
 swiftPackage.test()
+```
+
+Support `Fastlane` Command
+```swift
+@Command(\.fastlane) var fastlane
+
+fastlane.`init`()
+fastlane.tests()
+fastlane.snapshot()
+fastlane.deliver()
+fastlane.frameit()
+fastlane.run("fastlane command")
 ```
 
 ### Extension
