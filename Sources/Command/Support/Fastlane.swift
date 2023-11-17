@@ -39,3 +39,10 @@ public struct Fastlane {
         return bash.run("fastlane \(lane)")
     }
 }
+
+extension CommandValues {
+    /// Support Fastlane Command
+    public var fastlane: Fastlane {
+        Fastlane()
+    }
+}
