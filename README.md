@@ -90,6 +90,22 @@ fastlane.frameit()
 fastlane.run("fastlane command")
 ```
 
+Support `Tuist` Command
+```swift
+@Command(\.tuist) var tuist
+
+tuist.build()
+tuist.clean()
+tuist.fetch()
+tuist.edit()
+tuist.graph()
+tuist.generate()
+tuist.migration([])
+tuist.scaffold("template", [])
+tuist.test()
+tuist.run("tuist command")
+```
+
 ### Extension
 PLCommand is easier to scale.
 
