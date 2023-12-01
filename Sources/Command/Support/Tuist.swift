@@ -1,3 +1,4 @@
+/// Support Tuist Command
 public struct Tuist {
     @Command(\.bash) private var bash
 
