@@ -17,7 +17,8 @@ public struct Arguments {
     ///
     /// - Parameter values: The array of strings to use as arguments.
     public init(_ values: [String]) {
-        rawValue = values
+        let command = values.joined(separator: " ")
+        rawValue = [command]
     }
 }
 
