@@ -65,10 +65,10 @@ public struct Git {
         return run(at: path, [arguments])
     }
 
-    /// Running Github Command
+    /// Running Git Command
     @discardableResult
-    public func run(at path: String, _ arguments: [String]) -> Result {
-        let command = ["git"] + arguments
+    public func run(at path: String = ".", _ arguments: [String]) -> Result {
+        let command = ["cd \(path.escapingSpaces)", "&&" , "git"] + arguments
         let arguments = Arguments(command)
         return bash.run(arguments)
     }

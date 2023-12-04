@@ -3,41 +3,43 @@ import Foundation
 /// Support Fastlane Command
 public struct Fastlane {
     @Command(\.bash) var bash
-    
+
     /// Setting up fastlane
     @discardableResult
-    public func `init`() -> Result {
-        run("init")
+    public func `init`(at path: String = ".") -> Result {
+        run(at: path, ["init"])
     }
-    
+
     /// Running iOS tests using fastlane
     @discardableResult
-    public func tests() -> Result {
-        run("tests")
+    public func tests(at path: String = ".") -> Result {
+        run(at: path, ["tests"])
     }
-    
+
     /// Running Snapshot
     @discardableResult
-    public func snapshot() -> Result {
-        run("snapshot")
+    public func snapshot(at path: String = ".") -> Result {
+        run(at: path, ["snapshot"])
     }
-    
+
     /// Upload Screenshots to the App Store
     @discardableResult
-    public func deliver() -> Result {
-        run("deliver")
+    public func deliver(at path: String = ".") -> Result {
+        run(at: path, ["deliver"])
     }
-    
+
     /// Screenshots Into Device Frames
     @discardableResult
-    public func frameit() -> Result {
-        run("frameit")
+    public func frameit(at path: String = ".") -> Result {
+        run(at: path, ["frameit"])
     }
-    
-    /// Run Fastlane using a given lane
+
+    /// Run Fastlane Command
     @discardableResult
-    public func run(_ lane: String) -> Result {
-        return bash.run("fastlane \(lane)")
+    public func run(at path: String = ".", _ arguments: [String]) -> Result {
+        let command = ["cd \(path.escapingSpaces)", "&&" , "fastlane"] + arguments
+        let arguments = Arguments(command)
+        return bash.run(arguments)
     }
 }
 
