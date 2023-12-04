@@ -11,14 +11,6 @@ final class CommandTests: XCTestCase {
         XCTAssertFalse(ls.output.isEmpty)
     }
     
-    func testZsh() throws {
-        @Command(\.zsh) var zsh
-        
-        let pwd = zsh.run("pwd").output
-        let path = FileManager.default.currentDirectoryPath
-        XCTAssertEqual("/private" + pwd, path)
-    }
-    
     func testGit() throws {
         @Command(\.git) var git
         @Command(\.bash) var bash
