@@ -14,23 +14,23 @@ public struct Git {
     ///
     /// - Parameter addPath: a path
     @discardableResult
-    public func add(_ addPath: String = ".", at path: String = ".") -> Result {
+    public func add(at path: String = ".", _ addPath: String = ".") -> Result {
         return run(at: path, ["add", "\(addPath)"])
     }
 
     /// Clone a git repository at a given URL
     @discardableResult
-    public func clone(_ url: URL, to clonePath: String? = nil, allowingPrompt: Bool = true, at path: String = ".") -> Result {
-        var arguments: String = "\(git(allowingPrompt: allowingPrompt)) clone \(url.absoluteString)"
+    public func clone(at path: String = ".", _ url: URL, to clonePath: String? = nil, allowingPrompt: Bool = true) -> Result {
+        var arguments: String = "clone \(url.absoluteString)"
         clonePath.map { arguments.append(argument: $0) }
         arguments.append(" --quiet")
-        return run(at: path, [arguments])
+        return run(at: path, [arguments], allowingPrompt)
     }
 
     /// Create a git commit with given message
     @discardableResult
-    public func commit(_ message: String, at path: String = ".") -> Result {
-        var arguments = "git commit -m"
+    public func commit(at path: String = ".", _ message: String) -> Result {
+        var arguments = "commit -m"
         arguments.append(argument: message)
         arguments.append(" --quiet")
         return run(at: path, [arguments])
@@ -38,27 +38,27 @@ public struct Git {
 
     /// Perform a git push
     @discardableResult
-    public func push(remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true, at path: String = ".") -> Result {
-        var arguments = "\(git(allowingPrompt: allowingPrompt)) push"
+    public func push(at path: String = ".", remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true) -> Result {
+        var arguments = "push"
         remote.map { arguments.append(argument: $0) }
         branch.map { arguments.append(argument: $0) }
         arguments.append(" --quiet")
-        return run(at: path, [arguments])
+        return run(at: path, [arguments], allowingPrompt)
     }
 
     /// Perform a git pull
     @discardableResult
-    public func pull(remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true, at path: String = ".") -> Result {
-        var arguments = "\(git(allowingPrompt: allowingPrompt)) pull"
+    public func pull(at path: String = ".", remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true) -> Result {
+        var arguments = "pull"
         remote.map { arguments.append(argument: $0) }
         branch.map { arguments.append(argument: $0) }
         arguments.append(" --quiet")
-        return run(at: path, [arguments])
+        return run(at: path, [arguments], allowingPrompt)
     }
 
     /// Checkout a given git branch
     @discardableResult
-    public func checkout(branch: String, at path: String = ".") -> Result {
+    public func checkout(at path: String = ".", branch: String) -> Result {
         let arguments = "checkout"
             .appending(argument: branch)
             .appending(argument: " --quiet")
@@ -67,8 +67,8 @@ public struct Git {
 
     /// Running Git Command
     @discardableResult
-    public func run(at path: String = ".", _ arguments: [String]) -> Result {
-        let command = ["cd \(path.escapingSpaces)", "&&" , "git"] + arguments
+    public func run(at path: String = ".", _ arguments: [String], _ allowingPrompt: Bool = true) -> Result {
+        let command = ["cd \(path.escapingSpaces)", "&&", git(allowingPrompt: allowingPrompt)] + arguments
         let arguments = Arguments(command)
         return bash.run(arguments)
     }
