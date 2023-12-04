@@ -82,9 +82,8 @@ public struct Tuist {
 
     /// Test the project with arguments
     @discardableResult
-    public func test(_ arguments: [String]) -> Result {
-        let command = Arguments(["tuist", "test"] + arguments)
-        return bash.run(command)
+    public func test(at path: String = ".",_ arguments: [String]) -> Result {
+        return run(at: path, ["test"] + arguments)
     }
 
     /// Running Tuist Command
