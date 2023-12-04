@@ -21,37 +21,44 @@ public struct SwiftPackage {
     ///
     /// - Parameter type: Swift Package Type for options
     @discardableResult
-    public func create(type: SwiftPackageType = .library) -> Result {
-        let command: Arguments = "swift package init --type \(type.rawValue)"
-        return bash.run(command)
+    public func create(at path: String = ".", type: SwiftPackageType = .library) -> Result {
+        return run(at: path, ["package", "init", "--type", "\(type.rawValue)"])
     }
 
     /// Update package dependencies
     @discardableResult
-    public func update() -> Result {
-        bash.run("swift package update")
+    public func update(at path: String = ".") -> Result {
+        return run(at: path, ["package", "update"])
     }
 
     /// Generate Xcode Project for a Swift Package
     @discardableResult
-    public func generateXcodeproj() -> Result {
-        bash.run("swift package generate-xcodeproj")
+    public func generateXcodeproj(at path: String = ".") -> Result {
+        return run(at: path, ["package", "generate-xcodeproj"])
     }
 
     /// Build a Swift Package
     ///
     /// - Parameter configuration: swift build configuration options
     @discardableResult
-    public func build(configuration: SwiftBuildConfiguration = .debug) -> Result {
-        return bash.run("swift build -c \(configuration.rawValue)")
+    public func build(at path: String = ".", configuration: SwiftBuildConfiguration = .debug) -> Result {
+        return run(at: path, ["build", "-c", "\(configuration.rawValue)"])
     }
 
     /// Test a Swift Package
     ///
     /// - Parameter configuration: swift test configuration options
     @discardableResult
-    public func test(configuration: SwiftBuildConfiguration = .debug) -> Result {
-        return bash.run("swift test -c \(configuration.rawValue)")
+    public func test(at path: String = ".", configuration: SwiftBuildConfiguration = .debug) -> Result {
+        return run(at: path, ["test", "-c", "\(configuration.rawValue)"])
+    }
+
+    /// Running Swift Command
+    @discardableResult
+    public func run(at path: String = ".", _ arguments: [String]) -> Result {
+        let command = ["cd \(path.escapingSpaces)", "&&" , "swift"] + arguments
+        let arguments = Arguments(command)
+        return bash.run(arguments)
     }
 }
 
