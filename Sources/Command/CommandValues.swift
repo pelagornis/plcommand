@@ -1,5 +1,3 @@
-import Foundation
-
 /// A collection of globally available commands.
 public struct CommandValues: Sendable {
     @TaskLocal public static var current = Self()

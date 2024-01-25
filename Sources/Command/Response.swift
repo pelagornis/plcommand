@@ -1,5 +1,3 @@
-import Foundation
-
 /// The response from a command.
 public struct Response {
     

@@ -1,5 +1,3 @@
-import Foundation
-
 public extension CommandValues {
     /// An alias for running commands in Bash.
     var bash: Alias {

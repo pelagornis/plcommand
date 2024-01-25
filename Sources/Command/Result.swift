@@ -1,5 +1,3 @@
-import Foundation
-
 /// The result of a command execution.
 public enum Result {
     /// The command was successful.
@@ -8,7 +6,6 @@ public enum Result {
     /// The command failed.
     case failure(_ req: Request, _ res: Response)
 }
-
 
 public extension Result {
     /// The request that was executed.
@@ -20,7 +17,7 @@ public extension Result {
             return request
         }
     }
-    
+
     /// The response from the executed command.
     var response: Response {
         switch self {
@@ -30,17 +27,17 @@ public extension Result {
             return response
         }
     }
-    
+
     /// The status code of the response.
     var statusCode: Int32 {
         return response.statusCode
     }
-    
+
     /// The output of the command.
     var output: String {
         return response.output
     }
-    
+
     /// The error output of the command.
     var errorOutput: String {
         return response.error

@@ -6,19 +6,19 @@ public enum Task {
     @discardableResult
     static func run(_ request: Request) -> Result {
         let process = prepare(request)
-        
+
         let outputPipe = Pipe()
         let errorPipe = Pipe()
 
         process.standardOutput = outputPipe
         process.standardError = errorPipe
-        
+
         do {
             try run(process: process)
-            
+
             let outputActual = try fileHandleData(fileHandle: outputPipe.fileHandleForReading) ?? ""
             let errorActual = try fileHandleData(fileHandle: errorPipe.fileHandleForReading) ?? ""
-            
+
             if process.terminationStatus == EXIT_SUCCESS {
                 let res = Response(statusCode: process.terminationStatus, output: outputActual, error: errorActual)
                 return Result.success(request, res)
@@ -52,6 +52,7 @@ public extension Task {
         }
         return process
     }
+
     /// FileHandle preprocessing
     static func fileHandleData(fileHandle: FileHandle) throws -> String? {
         var data: Data?

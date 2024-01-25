@@ -1,5 +1,3 @@
-import Foundation
-
 /// A command-line command with arguments.
 public struct Arguments {
     

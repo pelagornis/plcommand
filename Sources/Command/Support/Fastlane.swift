@@ -1,5 +1,3 @@
-import Foundation
-
 /// Support Fastlane Command
 public struct Fastlane {
     @Command(\.bash) var bash
