@@ -11,10 +11,16 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin.git", from: "1.3.0")
+        .package(url: "https://github.com/apple/swift-docc-plugin.git", .upToNextMajor(from: "1.3.0")),
+        .package(url: "https://github.com/apple/swift-log", .upToNextMajor(from: "1.5.4"))
     ],
     targets: [
-        .target(name: "Command"),
+        .target(
+            name: "Command",
+            dependencies: [
+                .product(name: "Logging", package: "swift-log"),
+            ]
+        ),
         .testTarget(
             name: "CommandTests",
             dependencies: ["Command"]
