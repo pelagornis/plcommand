@@ -1,4 +1,4 @@
-/// An alias for a command that can be run with `PLCommand`.
+/// An alias for a command that can be run with `Command`.
 public struct Alias {
     /// The URL of the executable to run.
     public let executableURL: String
@@ -22,12 +22,12 @@ public struct Alias {
 
 
 public extension Alias {
-    /// Prepares a `PLCommand.Request` for the alias.
+    /// Prepares a `Command.Request` for the alias.
     ///
     /// - Parameters:
     ///   - arguments: The arguments to pass to the command.
     ///   - environment: The environment in which to run the command.
-    /// - Returns: A `PLCommand.Request` for the alias.
+    /// - Returns: A `Command.Request` for the alias.
     func prepare(
         _ arguments: Arguments? = nil,
         environment: Environment = .global
@@ -49,9 +49,10 @@ public extension Alias {
     @discardableResult
     func run(
         _ arguments: Arguments? = nil,
-        environment: Environment = .global
+        environment: Environment = .global,
+        log: Bool = false
     ) -> Result {
         let req = prepare(arguments, environment: environment)
-        return Task.run(req)
+        return Task().run(req, log: log)
     }
 }

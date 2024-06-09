@@ -1,10 +1,20 @@
 import Foundation
+import Logging
 
-/// The Task is Operation to execute PLCommand.
-public enum Task {
+/// The Task is Operation to execute Command.
+public struct Task {
+    let logger: Logger?
+
+    public init(logger: Logger? = nil) {
+        self.logger = logger
+    }
+
     /// running command.
     @discardableResult
-    static func run(_ request: Request) -> Result {
+    public func run(
+        _ request: Request,
+        log: Bool
+    ) -> Result {
         let process = prepare(request)
 
         let outputPipe = Pipe()
@@ -21,9 +31,21 @@ public enum Task {
 
             if process.terminationStatus == EXIT_SUCCESS {
                 let res = Response(statusCode: process.terminationStatus, output: outputActual, error: errorActual)
+                if let logger, log {
+                    logger.debug(
+                        "\(res.output)",
+                        source: "command: \(request.arguments?.rawValue.joined(separator: " ") ?? "")"
+                    )
+                }
                 return Result.success(request, res)
             } else {
                 let res = Response(statusCode: process.terminationStatus, output: errorActual, error: errorActual)
+                if let logger, log {
+                    logger.error(
+                        "\(res.error)",
+                        source: "command: \(request.arguments?.rawValue.joined(separator: " ") ?? "")"
+                    )
+                }
                 return Result.failure(request, res)
             }
         } catch let error {
@@ -35,7 +57,7 @@ public enum Task {
 
 public extension Task {
     /// Set the required parts before running the process
-    static func prepare(_ request: Request) -> Process {
+    func prepare(_ request: Request) -> Process {
         let process = Process()
         if #available(macOS 10.13, *) {
             process.executableURL = URL(path: request.executableURL)
@@ -54,7 +76,7 @@ public extension Task {
     }
 
     /// FileHandle preprocessing
-    static func fileHandleData(fileHandle: FileHandle) throws -> String? {
+    func fileHandleData(fileHandle: FileHandle) throws -> String? {
         var data: Data?
         if #available(macOS 10.15.4, *) {
             data = try fileHandle.readToEnd()
@@ -65,7 +87,7 @@ public extension Task {
     }
 
     /// Process preprocessing
-    static func run(process: Process) throws {
+    func run(process: Process) throws {
         if #available(macOS 10.13, *) {
             try process.run()
         } else {
