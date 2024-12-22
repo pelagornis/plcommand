@@ -4,14 +4,18 @@ public struct Request {
     /// The environment to use for the command.
     public var environment: Environment? {
         didSet {
-            self.executableURL = ""
+            if audited {
+                self.executableURL = getAbsoluteExecutableURL()
+            }
         }
     }
 
     /// The URL of the executable to run.
     public var executableURL: String {
         didSet {
-            self.executableURL = ""
+            if audited {
+                self.executableURL = getAbsoluteExecutableURL()
+            }
         }
     }
 
@@ -36,5 +40,27 @@ public struct Request {
         self.dashc = dashc
         self.arguments = arguments
         self.audited = audited
+    }
+}
+
+private extension Request {
+    func getAbsoluteExecutableURL() -> String {
+        if FileManager.default.fileExists(atPath: executableURL) {
+            return executableURL
+        }
+        guard let environment = environment else {
+            return executableURL
+        }
+        let paths = environment["PATH"]?.split(separator: ":").map{ String($0) } ?? []
+        guard paths.count > 0 else {
+            return executableURL 
+        }
+        paths.forEach {
+            let absoluteExecutableURL = "\(path)/\(executableURL)"
+            if FileManager.default.fileExists(atPath: absoluteExecutableURL) {
+                return absoluteExecutableURL
+            }
+        }
+        return executableURL
     }
 }
