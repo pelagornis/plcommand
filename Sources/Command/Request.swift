@@ -57,8 +57,8 @@ private extension Request {
         guard paths.count > 0 else {
             return executableURL 
         }
-        paths.forEach {
-            let absoluteExecutableURL = "\($0)/\(executableURL)"
+        for path in paths {
+            let absoluteExecutableURL = "\(path)/\(executableURL)"
             if FileManager.default.fileExists(atPath: absoluteExecutableURL) {
                 return absoluteExecutableURL
             }
