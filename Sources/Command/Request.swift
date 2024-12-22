@@ -1,3 +1,5 @@
+import Foundation
+
 /// The request from a command.
 public struct Request {
 
