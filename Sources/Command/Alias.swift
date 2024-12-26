@@ -29,8 +29,8 @@ public extension Alias {
     ///   - environment: The environment in which to run the command.
     /// - Returns: A `Command.Request` for the alias.
     func prepare(
-        _ arguments: Arguments? = nil,
-        environment: Environment = .global
+        _ arguments: Arguments?,
+        environment: Environment?
     ) -> Request {
         Request(
             environment: environment,
