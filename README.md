@@ -49,6 +49,12 @@ Or if you want to use Makefile command.
 @Command(\.make) var makeCommand
 makeCommand.run("command")
 ```
+## Alias
+Create a shortcut name for a command.
+```swift
+let git = Alias(executableURL: "/usr/bin/git")
+git.run("command")
+```
 
 ## Frequently Used Commands
 PLCommand supports frequently used features.
