@@ -11,8 +11,8 @@ let package = Package(
         )
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin.git", .upToNextMajor(from: "1.3.0")),
-        .package(url: "https://github.com/apple/swift-log", .upToNextMajor(from: "1.5.4"))
+        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.4.3"),
+        .package(url: "https://github.com/apple/swift-log", from: "1.6.2")
     ],
     targets: [
         .target(
