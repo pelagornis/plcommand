@@ -6,7 +6,7 @@ public struct Git {
 
     /// Initialize a git repository
     @discardableResult
-    public func `init`(at path: String? = nil) -> Result {
+    public func `init`(at path: String = ".") -> Result {
         return run(at: path, ["init"])
     }
 
@@ -14,18 +14,13 @@ public struct Git {
     ///
     /// - Parameter addPath: a path
     @discardableResult
-    public func add(at path: String? = nil, _ addPath: String = ".") -> Result {
+    public func add(at path: String = ".", _ addPath: String = ".") -> Result {
         return run(at: path, ["add", "\(addPath)"])
     }
 
     /// Clone a git repository at a given URL
     @discardableResult
-    public func clone(
-        at path: String? = nil,
-        _ url: URL,
-        to clonePath: String? = nil,
-        allowingPrompt: Bool = true
-    ) -> Result {
+    public func clone(at path: String = ".", _ url: URL, to clonePath: String? = nil, allowingPrompt: Bool = true) -> Result {
         var arguments: String = "clone \(url.absoluteString)"
         clonePath.map { arguments.append(argument: $0) }
         arguments.append(" --quiet")
@@ -34,10 +29,7 @@ public struct Git {
 
     /// Create a git commit with given message
     @discardableResult
-    public func commit(
-        at path: String? = nil,
-        _ message: String
-    ) -> Result {
+    public func commit(at path: String = ".", _ message: String) -> Result {
         var arguments = "commit -m"
         arguments.append(argument: message)
         arguments.append(" --quiet")
@@ -46,12 +38,7 @@ public struct Git {
 
     /// Perform a git push
     @discardableResult
-    public func push(
-        at path: String? = nil,
-        remote: String? = nil, 
-        branch: String? = nil, 
-        allowingPrompt: Bool = true
-    ) -> Result {
+    public func push(at path: String = ".", remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true) -> Result {
         var arguments = "push"
         remote.map { arguments.append(argument: $0) }
         branch.map { arguments.append(argument: $0) }
@@ -62,7 +49,7 @@ public struct Git {
     /// Perform a git pull
     @discardableResult
     public func pull(
-        at path: String? = nil, 
+        at path: String = ".", 
         remote: String? = nil, 
         branch: String? = nil, 
         allowingPrompt: Bool = true
@@ -77,8 +64,8 @@ public struct Git {
     /// Checkout a given git branch
     @discardableResult
     public func checkout(
-         at path: String? = nil,
-         branch: String
+        at path: String = ".",
+        branch: String
     ) -> Result {
         let arguments = "checkout"
             .appending(argument: branch)
@@ -89,7 +76,7 @@ public struct Git {
     /// Running Git Command
     @discardableResult
     public func run(
-        at path: String? = ".",
+        at path: String?,
         _ arguments: [String],
         _ allowingPrompt: Bool = true
     ) -> Result {
