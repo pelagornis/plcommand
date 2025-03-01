@@ -48,7 +48,12 @@ public struct Git {
 
     /// Perform a git pull
     @discardableResult
-    public func pull(at path: String = ".", remote: String? = nil, branch: String? = nil, allowingPrompt: Bool = true) -> Result {
+    public func pull(
+        at path: String = ".", 
+        remote: String? = nil, 
+        branch: String? = nil, 
+        allowingPrompt: Bool = true
+    ) -> Result {
         var arguments = "pull"
         remote.map { arguments.append(argument: $0) }
         branch.map { arguments.append(argument: $0) }
@@ -58,7 +63,10 @@ public struct Git {
 
     /// Checkout a given git branch
     @discardableResult
-    public func checkout(at path: String = ".", branch: String) -> Result {
+    public func checkout(
+        at path: String? = nil,
+         branch: String
+    ) -> Result {
         let arguments = "checkout"
             .appending(argument: branch)
             .appending(argument: " --quiet")
@@ -67,10 +75,14 @@ public struct Git {
 
     /// Running Git Command
     @discardableResult
-    public func run(at path: String = ".", _ arguments: [String], _ allowingPrompt: Bool = true) -> Result {
-        let command = ["cd \(path.escapingSpaces)", "&&", git(allowingPrompt: allowingPrompt)] + arguments
+    public func run(
+        at path: String? = nil,
+        _ arguments: [String],
+        _ allowingPrompt: Bool = true
+    ) -> Result {
+        let command = [git(allowingPrompt: allowingPrompt)] + arguments
         let arguments = Arguments(command)
-        return bash.run(arguments)
+        return bash.run(arguments, directory: path)
     }
 
     private func git(allowingPrompt: Bool) -> String {
