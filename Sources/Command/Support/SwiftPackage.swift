@@ -53,10 +53,10 @@ public struct SwiftPackage {
 
     /// Running Swift Command
     @discardableResult
-    public func run(at path: String = ".", _ arguments: [String]) -> Result {
-        let command = ["cd \(path.escapingSpaces)", "&&" , "swift"] + arguments
+    public func run(at path: String?, _ arguments: [String]) -> Result {
+        let command = ["swift"] + arguments
         let arguments = Arguments(command)
-        return bash.run(arguments)
+        return bash.run(arguments, directory: path)
     }
 }
 
