@@ -34,10 +34,10 @@ public struct Fastlane {
 
     /// Run Fastlane Command
     @discardableResult
-    public func run(at path: String = ".", _ arguments: [String]) -> Result {
-        let command = ["cd \(path.escapingSpaces)", "&&" , "fastlane"] + arguments
+    public func run(at path: String?, _ arguments: [String]) -> Result {
+        let command = ["fastlane"] + arguments
         let arguments = Arguments(command)
-        return bash.run(arguments)
+        return bash.run(arguments, directory: path)
     }
 }
 
