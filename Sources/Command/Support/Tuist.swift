@@ -88,10 +88,10 @@ public struct Tuist {
 
     /// Running Tuist Command
     @discardableResult
-    public func run(at path: String = ".", _ arguments: [String]) -> Result {
-        let command = ["cd \(path.escapingSpaces)", "&&" , "tuist"] + arguments
+    public func run(at path: String?, _ arguments: [String]) -> Result {
+        let command = ["tuist"] + arguments
         let arguments = Arguments(command)
-        return bash.run(arguments)
+        return bash.run(arguments, directory: path)
     }
 }
 
