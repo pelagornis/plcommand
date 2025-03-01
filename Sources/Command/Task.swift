@@ -67,6 +67,9 @@ public extension Task {
         if let environment = request.environment?.data {
             process.environment = environment
         }
+        if let path = request.directory {
+            process.currentDirectoryURL = URL(fileURLWithPath: path)
+        }
         if let dashc = request.dashc {
             var arguments = dashc.rawValue
             arguments.append(contentsOf: request.arguments?.rawValue ?? [])

@@ -27,6 +27,9 @@ public struct Request {
     /// Arguments to pass to the command.
     public var arguments: Arguments?
 
+    /// Directory to run the command in.
+    public let directory: String?
+
     /// Whether the command should be audited.
     public let audited: Bool
     
@@ -35,12 +38,14 @@ public struct Request {
         executableURL: String,
         dashc: Arguments? = nil,
         arguments: Arguments? = nil,
+        directory: String? = nil,
         audited: Bool = true
     ) {
         self.environment = environment
         self.executableURL = executableURL
         self.dashc = dashc
         self.arguments = arguments
+        self.directory = directory
         self.audited = audited
     }
 }
