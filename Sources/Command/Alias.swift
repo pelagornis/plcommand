@@ -42,22 +42,6 @@ public extension Alias {
             directory: directory
         )
     }
-    
-    /// Runs the alias.
-    ///
-    /// - Parameters:
-    ///   - arguments: The arguments to pass to the command.
-    ///   - environment: The environment in which to run the command.
-    /// - Returns: The result of running the alias.
-    @discardableResult
-    func run(
-        _ arguments: Arguments? = nil,
-        environment: Environment = .global,
-        log: Bool = false
-    ) -> Result {
-        let req = prepare(arguments, environment: environment)
-        return Task().run(req, log: log)
-    }
 
     /// Runs the alias.
     ///
